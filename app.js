@@ -66,12 +66,70 @@ const employ = function() {
 })}
 
 const engine = function() {
-
+    //do inquirer questions for engineer here
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "name",
+                message: "What is their name?"
+            },
+            {
+                type: 'number',
+                name: 'ID',
+                message: 'Enter their ID number.'
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Enter their email address.'
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'Enter their Github profile name.'
+            }
+        ]
+    ).then((data) => {
+        team.push(data); 
+        console.log(team);
+        employ();
+    });
 };
 
 const intern = function() {
+    //do inquirer questions for intern here
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "name",
+                message: "What is their name?"
+            },
+            {
+                type: 'number',
+                name: 'ID',
+                message: 'Enter their ID number.'
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Enter their email address.'
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: 'Enter the name of the school they attend.'
+            }
+        ]
+    ).then((data) => {
+        team.push(data); 
+        console.log(team);
+        employ();
+    });
+};
 
-}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
