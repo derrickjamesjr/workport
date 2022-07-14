@@ -17,6 +17,13 @@ const team = [];
 inquirer
     .prompt([
         {
+            type:'list',
+            name: 'role',
+            message: 'What is your role?',
+            choices: ['Manager']
+
+        },
+        {
             type: "input",
             name: "name",
             message: "What is your name?"
@@ -62,13 +69,23 @@ const employ = function() {
         // console.log('New!')
         intern();
     }
-    else if (data.employees === 'Finish') {console.log('FINISH!')};
+    else if (data.employees === 'Finish') {
+        console.log('FINISH!');
+        // console.log(render(team));
+        group(data);
+    };
 })}
 
 const engine = function() {
     //do inquirer questions for engineer here
     inquirer
         .prompt([
+            {
+                type:'list',
+                name:'role',
+                message: "Choose the employee's role.",
+                choices: ['Engineer']
+            },
             {
                 type: "input",
                 name: "name",
@@ -102,6 +119,12 @@ const intern = function() {
     inquirer
         .prompt([
             {
+                type:'list',
+                name:'role',
+                message: "Choose the employee's role.",
+                choices: ['Intern']
+            },
+            {
                 type: "input",
                 name: "name",
                 message: "What is their name?"
@@ -129,7 +152,9 @@ const intern = function() {
     });
 };
 
-
+const group = function() {
+     fs.writeFile(OUTPUT_DIR, team);
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
