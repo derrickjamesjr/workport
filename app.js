@@ -72,7 +72,7 @@ const employ = function() {
     else if (data.employees === 'Finish') {
         console.log('FINISH!');
         // console.log(render(team));
-        group(data);
+        group();
     };
 })}
 
@@ -153,7 +153,7 @@ const intern = function() {
 };
 
 const group = function() {
-     fs.writeFile(OUTPUT_DIR, team);
+     fs.writeFile('team.html', render(team), err => console.log(err));
 }
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
