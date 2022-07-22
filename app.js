@@ -17,20 +17,13 @@ const team = [];
 inquirer
     .prompt([
         {
-            type:'list',
-            name: 'role',
-            message: 'What is your role?',
-            choices: ['Manager']
-
-        },
-        {
             type: "input",
             name: "name",
             message: "What is your name?"
         },
         {
             type: 'number',
-            name: 'ID',
+            name: 'id',
             message: 'Enter your ID number.'
         },
         {
@@ -45,7 +38,8 @@ inquirer
         }
     ]
     ).then((data) => {
-        team.push(data); 
+        const manager = new Manager(data.name, data.id, data.email, data.officenumber);
+        team.push(manager); 
         // console.log(team)
         employ();
     });
@@ -81,19 +75,13 @@ const engine = function() {
     inquirer
         .prompt([
             {
-                type:'list',
-                name:'role',
-                message: "Choose the employee's role.",
-                choices: ['Engineer']
-            },
-            {
                 type: "input",
                 name: "name",
                 message: "What is their name?"
             },
             {
                 type: 'number',
-                name: 'ID',
+                name: 'id',
                 message: 'Enter their ID number.'
             },
             {
@@ -108,8 +96,9 @@ const engine = function() {
             }
         ]
     ).then((data) => {
-        team.push(data); 
-        console.log(team);
+        const engineer = new Engineer(data.name, data.id, data.email, data.github);
+        team.push(engineer); 
+        // console.log(team);
         employ();
     });
 };
@@ -119,19 +108,13 @@ const intern = function() {
     inquirer
         .prompt([
             {
-                type:'list',
-                name:'role',
-                message: "Choose the employee's role.",
-                choices: ['Intern']
-            },
-            {
                 type: "input",
                 name: "name",
                 message: "What is their name?"
             },
             {
                 type: 'number',
-                name: 'ID',
+                name: 'id',
                 message: 'Enter their ID number.'
             },
             {
@@ -146,14 +129,15 @@ const intern = function() {
             }
         ]
     ).then((data) => {
-        team.push(data); 
+        const intrn = new Intern(data.name, data.id, data.email, data.school);
+        team.push(intrn); 
         console.log(team);
         employ();
     });
 };
 
 const group = function() {
-     fs.writeFile('team.html', render(team), err => console.log(err));
+     fs.writeFile('team.html', render(team) , err => console.log(err));
 }
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
